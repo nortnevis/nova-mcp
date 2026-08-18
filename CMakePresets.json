@@ -1,0 +1,209 @@
+{
+    "version": 6,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 31
+    },
+    "configurePresets": [
+        {
+            "hidden": true,
+            "name": "default",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "installDir": "${sourceDir}/install/${presetName}",
+            "generator": "Ninja",
+            "architecture": {
+                "value": "x64",
+                "strategy": "external"
+            },
+            "warnings": {
+                "dev": true
+            },
+            "cacheVariables": {
+                "CMAKE_EXPORT_COMPILE_COMMANDS": true
+            }
+        },
+        {
+            "name": "multi-config",
+            "displayName": "Multi-Config",
+            "inherits": "default",
+            "generator": "Ninja Multi-Config",
+            "cacheVariables": {
+                "CMAKE_CONFIGURATION_TYPES": "Debug;Release"
+            }
+        },
+        {
+            "name": "debug",
+            "displayName": "Debug",
+            "inherits": "default",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "release",
+            "displayName": "Release",
+            "inherits": "default",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "vcpkg-multi-config",
+            "displayName": "VCPKG Multi-Config",
+            "inherits": "multi-config",
+            "cacheVariables": {
+                "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+            }
+        },
+        {
+            "name": "vcpkg-debug",
+            "displayName": "VCPKG Debug",
+            "inherits": "debug",
+            "cacheVariables": {
+                "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+            }
+        },
+        {
+            "name": "vcpkg-release",
+            "displayName": "VCPKG Release",
+            "inherits": "release",
+            "cacheVariables": {
+                "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "debug-multi-config",
+            "displayName": "Debug Multi-Config",
+            "configurePreset": "multi-config",
+            "configuration": "Debug"
+        },
+        {
+            "name": "release-multi-config",
+            "displayName": "Release Multi-Config",
+            "configurePreset": "multi-config",
+            "configuration": "Release"
+        },
+        {
+            "name": "debug",
+            "displayName": "Debug",
+            "configurePreset": "debug"
+        },
+        {
+            "name": "release",
+            "displayName": "Release",
+            "configurePreset": "release"
+        },
+        {
+            "name": "vcpkg-debug-multi-config",
+            "displayName": "VCPKG Debug Multi-Config",
+            "configurePreset": "vcpkg-multi-config",
+            "configuration": "Debug"
+        },
+        {
+            "name": "vcpkg-release-multi-config",
+            "displayName": "VCPKG Release Multi-Config",
+            "configurePreset": "vcpkg-multi-config",
+            "configuration": "Release"
+        },
+        {
+            "name": "vcpkg-debug",
+            "displayName": "VCPKG Debug",
+            "configurePreset": "vcpkg-debug"
+        },
+        {
+            "name": "vcpkg-release",
+            "displayName": "VCPKG Release",
+            "configurePreset": "vcpkg-release"
+        }
+    ],
+    "workflowPresets": [
+        {
+            "name": "multi-config",
+            "steps": [
+                {
+                    "name": "multi-config",
+                    "type": "configure"
+                },
+                {
+                    "name": "debug-multi-config",
+                    "type": "build"
+                },
+                {
+                    "name": "release-multi-config",
+                    "type": "build"
+                }
+            ]
+        },
+        {
+            "name": "debug",
+            "steps": [
+                {
+                    "name": "debug",
+                    "type": "configure"
+                },
+                {
+                    "name": "debug",
+                    "type": "build"
+                }
+            ]
+        },
+        {
+            "name": "release",
+            "steps": [
+                {
+                    "name": "release",
+                    "type": "configure"
+                },
+                {
+                    "name": "release",
+                    "type": "build"
+                }
+            ]
+        },
+        {
+            "name": "vcpkg-multi-config",
+            "steps": [
+                {
+                    "name": "vcpkg-multi-config",
+                    "type": "configure"
+                },
+                {
+                    "name": "vcpkg-debug-multi-config",
+                    "type": "build"
+                },
+                {
+                    "name": "vcpkg-release-multi-config",
+                    "type": "build"
+                }
+            ]
+        },
+        {
+            "name": "vcpkg-debug",
+            "steps": [
+                {
+                    "name": "vcpkg-debug",
+                    "type": "configure"
+                },
+                {
+                    "name": "vcpkg-debug",
+                    "type": "build"
+                }
+            ]
+        },
+        {
+            "name": "vcpkg-release",
+            "steps": [
+                {
+                    "name": "vcpkg-release",
+                    "type": "configure"
+                },
+                {
+                    "name": "vcpkg-release",
+                    "type": "build"
+                }
+            ]
+        }
+    ]
+}
