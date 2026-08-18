@@ -1,0 +1,40 @@
+# Ignore everything
+*
+# Add .gitignore to white list
+!.gitignore
+
+# Other .git files
+!.gitattributes
+!.gitmodules
+
+# Files
+!LICENSE
+!README.md
+!vcpkg-configuration.json
+!vcpkg.json
+!CMakeLists.txt
+!CMakePresets.json
+!.clang-format
+!.clangd
+!.editorconfig
+
+# Folders
+!/pch
+!/pch/**
+!/include
+!/include/**
+!/src
+!/src/**
+!/snippets
+!/snippets/**
+!/docs
+!/docs/**
+!/cmake
+!/cmake/**
+!/.cmake
+!/.cmake/**
+
+# VSCode settings
+!/.vscode   
+!/.vscode/settings.json
+

@@ -1,0 +1,25 @@
+---
+CompileFlags:
+  Add: [ -std=c++26, -x, c++ ]
+  CompilationDatabase: ./build/multi-config/
+Diagnostics:
+  MissingIncludes: None
+  UnusedIncludes: Strict
+Completion:
+  HeaderInsertion: Never
+InlayHints:
+  Enabled: true
+  DeducedTypes: true
+  TypeNameLimit: 24
+---
+If:
+  PathMatch: .*\.(cl|h|c)$
+CompileFlags:
+  Add: [ -x, c ]
+  Remove: [ -std=c++26 ]
+---
+If:
+  PathMatch: pch/pch\.hpp
+Diagnostics:
+  UnusedIncludes: None
+...
