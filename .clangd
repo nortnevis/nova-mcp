@@ -1,7 +1,8 @@
 ---
 CompileFlags:
   Add: [ -std=c++26, -x, c++ ]
-  CompilationDatabase: ./build/multi-config/
+  Remove: [ -freflection ]
+  CompilationDatabase: ./build/vcpkg-multi-config/
 Diagnostics:
   MissingIncludes: None
   UnusedIncludes: Strict

@@ -11,6 +11,7 @@ target_compile_options(
             -Wconversion
             -Wshadow
             -Wnon-virtual-dtor
+            -freflection
             >
             $<$<CXX_COMPILER_ID:MSVC>:
             /W4
