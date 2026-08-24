@@ -5,9 +5,9 @@ CompileFlags:
     - -std=c++26
     - -freflection
     - -fexpansion-statements
-    - -isystem
-    - tools/libcxx/include
   CompilationDatabase: ./build/vcpkg-multi-config/
+  Compiler: gcc-16
+  BuiltinHeaders: QueryDriver
 Diagnostics:
   MissingIncludes: None
   UnusedIncludes: Strict
@@ -28,7 +28,6 @@ CompileFlags:
     - -std=c++26
     - -freflection
     - -fexpansion-statements
-    - -stdlib=libc++
 ---
 If:
   PathMatch: pch/pch\.hpp
