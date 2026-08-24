@@ -1,7 +1,6 @@
 # Print some variables
 include(CMakePrintHelpers)
 cmake_print_variables(CMAKE_TOOLCHAIN_FILE)
-cmake_print_variables(CMAKE_CXX_COMPILER_LAUNCHER)
 
 set(CMAKE_CXX_SCAN_FOR_MODULES FALSE)
 set(CMAKE_CXX_STANDARD 26)
@@ -42,6 +41,7 @@ find_program(CCACHE_PROGRAM ccache)
 if(CCACHE_PROGRAM)
   set(CMAKE_CXX_COMPILER_LAUNCHER "${CCACHE_PROGRAM}")
 endif()
+cmake_print_variables(CMAKE_CXX_COMPILER_LAUNCHER)
 
 # Get version
 execute_process(
