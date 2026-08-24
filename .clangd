@@ -1,7 +1,12 @@
 ---
 CompileFlags:
-  Add: [ -std=c++26, -x, c++ ]
-  Remove: [ -freflection ]
+  Add:
+    - -x
+    - c++
+    - -std=c++26
+    - -freflection
+    - -fexpansion-statements
+    - -stdlib=libc++
   CompilationDatabase: ./build/vcpkg-multi-config/
 Diagnostics:
   MissingIncludes: None
@@ -16,11 +21,16 @@ InlayHints:
 If:
   PathMatch: .*\.(cl|h|c)$
 CompileFlags:
-  Add: [ -x, c ]
-  Remove: [ -std=c++26 ]
+  Add: [-x, c]
+  Remove:
+    - -x
+    - c++
+    - -std=c++26
+    - -freflection
+    - -fexpansion-statements
+    - -stdlib=libc++
 ---
 If:
   PathMatch: pch/pch\.hpp
 Diagnostics:
   UnusedIncludes: None
-...
