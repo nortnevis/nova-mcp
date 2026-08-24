@@ -1,11 +1,21 @@
 {
     "dependencies": [
+        "boost-assert",
+        "boost-core",
         "simdjson"
     ],
     "overrides": [
         {
             "name": "simdjson",
             "version": "4.6.6"
+        },
+        {
+            "name": "boost-assert",
+            "version": "1.91.0"
+        },
+        {
+            "name": "boost-core",
+            "version": "1.91.0"
         }
     ]
 }

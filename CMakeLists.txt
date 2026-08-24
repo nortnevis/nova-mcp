@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.31 FATAL_ERROR)
 cmake_policy(VERSION 3.31)
 set(CMAKE_LANG "en_US.UTF-8")
-
 include(cmake/SetupEnvironment.cmake)
 
 project(
@@ -9,11 +8,8 @@ project(
   DESCRIPTION "This is a template cmake project."
   VERSION ${GIT_DESCRIBED_TAG}
   LANGUAGES CXX)
-
 include(cmake/CompileFlags.cmake)
-find_or_fetch_dependency(
-  simdjson 4.6.6 https://github.com/simdjson/simdjson.git v4.6.6
-  simdjson::simdjson)
+include(cmake/FetchDependencies.cmake)
 
 add_library(pch STATIC ${CMAKE_SOURCE_DIR}/pch/pch.cpp)
 target_precompile_headers(
