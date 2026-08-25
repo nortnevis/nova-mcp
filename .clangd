@@ -1,15 +1,12 @@
 CompileFlags:
+  CompilationDatabase: build/vcpkg-multi-config/
   Add:
-    - -x
-    - c++
     - -std=c++26
-    - -freflection
-    - -fexpansion-statements
-  CompilationDatabase: ./build/vcpkg-multi-config/
-  Compiler: gcc-16
-  BuiltinHeaders: QueryDriver
+    - -freflection-latest
+    - -nostdinc++
+    - -isystem
+    - tools/lib/libcxx/include
 Diagnostics:
-  MissingIncludes: None
   UnusedIncludes: Strict
 Completion:
   HeaderInsertion: Never
@@ -17,17 +14,6 @@ InlayHints:
   Enabled: true
   DeducedTypes: true
   TypeNameLimit: 24
----
-If:
-  PathMatch: .*\.(cl|h|c)$
-CompileFlags:
-  Add: [-x, c]
-  Remove:
-    - -x
-    - c++
-    - -std=c++26
-    - -freflection
-    - -fexpansion-statements
 ---
 If:
   PathMatch: pch/pch\.hpp
