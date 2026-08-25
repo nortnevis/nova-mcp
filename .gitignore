@@ -17,6 +17,7 @@
 !.clang-format
 !.clangd
 !.editorconfig
+!setup-clangd-for-p2996.sh
 
 # Folders
 !/pch
