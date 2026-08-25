@@ -14,11 +14,17 @@ include(cmake/CompileFlags.cmake)
 find_or_fetch_dependency(
   simdjson 4.6.6 https://github.com/simdjson/simdjson.git v4.6.6
   simdjson::simdjson)
+find_or_fetch_dependency(boost_asio 1.92.0 https://github.com/boostorg/asio.git
+                         boost-1.92.0 Boost::asio)
+find_or_fetch_dependency(
+  boost_beast 1.92.0 https://github.com/boostorg/beast.git boost-1.92.0
+  Boost::beast)
 
 add_library(pch STATIC ${CMAKE_SOURCE_DIR}/pch/pch.cpp)
 target_precompile_headers(
   pch PRIVATE "$<$<COMPILE_LANGUAGE:CXX>:${CMAKE_SOURCE_DIR}/pch/pch.hpp>")
-target_link_libraries(pch PUBLIC simdjson::simdjson project::options)
+target_link_libraries(pch PUBLIC simdjson::simdjson Boost::asio Boost::beast
+                                 project::options)
 
 file(GLOB_RECURSE hpp_files CONFIGURE_DEPENDS include/*.hpp)
 file(GLOB_RECURSE cpp_files CONFIGURE_DEPENDS src/*.cpp)
