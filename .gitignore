@@ -21,10 +21,10 @@
 # Folders
 !/pch
 !/pch/**
-!/include
-!/include/**
-!/src
-!/src/**
+!/SDK
+!/SDK/**
+!/examples
+!/examples/**
 !/snippets
 !/snippets/**
 !/docs
