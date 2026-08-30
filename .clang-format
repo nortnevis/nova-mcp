@@ -5,8 +5,8 @@ ColumnLimit: 120
 LineEnding: LF
 IndentWidth: 4
 TabWidth: 4
-AccessModifierOffset: 0
-IndentAccessModifiers: false
+#IndentAccessModifiers: false
+AccessModifierOffset: -4
 # Includes
 SortIncludes: CaseInsensitive
 IncludeBlocks: Regroup
