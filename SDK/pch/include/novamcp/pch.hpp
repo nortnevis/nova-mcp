@@ -13,3 +13,12 @@
 #include <boost/asio.hpp>
 #include <boost/beast.hpp>
 #include <simdjson.h>
+
+namespace novamcp {
+
+using namespace boost;
+using asio::awaitable;
+using asio::co_spawn;
+using asio::use_awaitable;
+
+} // namespace novamcp

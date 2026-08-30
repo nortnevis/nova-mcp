@@ -1,7 +1,9 @@
 #include <novamcp/server.hpp>
-namespace nv = novamcp;
+
+using namespace novamcp;
+
 int main(int, const char **) {
-    std::println("Hello, World!");
-    nv::BasicServer srv;
+    BasicServer srv;
+    srv.run();
     return 0;
 }
