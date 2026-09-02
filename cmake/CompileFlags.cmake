@@ -4,6 +4,7 @@ add_library(project::options ALIAS project_options)
 target_compile_options(
   project_options
   INTERFACE $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:
+            -freflection
             -Wall
             -Wextra
             -Wpedantic
