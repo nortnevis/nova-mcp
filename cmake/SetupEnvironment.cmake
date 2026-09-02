@@ -1,10 +1,9 @@
 # Print some variables
 include(CMakePrintHelpers)
 cmake_print_variables(CMAKE_TOOLCHAIN_FILE)
-cmake_print_variables(CMAKE_CXX_COMPILER_LAUNCHER)
 
 set(CMAKE_CXX_SCAN_FOR_MODULES FALSE)
-set(CMAKE_CXX_STANDARD 26)
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_C_STANDARD 23)
 
 include(FetchContent)
@@ -42,6 +41,7 @@ find_program(CCACHE_PROGRAM ccache)
 if(CCACHE_PROGRAM)
   set(CMAKE_CXX_COMPILER_LAUNCHER "${CCACHE_PROGRAM}")
 endif()
+cmake_print_variables(CMAKE_CXX_COMPILER_LAUNCHER)
 
 # Get version
 execute_process(
@@ -51,16 +51,21 @@ execute_process(
   RESULT_VARIABLE OP_RESULT
   OUTPUT_STRIP_TRAILING_WHITESPACE)
 if(NOT OP_RESULT EQUAL 0)
-  message(FATAL_ERROR "'git describe --tags' returned ${OP_RESULT}")
-endif()
-string(REGEX MATCH "^([0-9]+)\\.([0-9]+)\\.([0-9]+)" GIT_DESCRIBED_TAG ${TAG})
-if(NOT GIT_DESCRIBED_TAG)
+  message(WARNING "'git describe --tags' returned ${OP_RESULT}")
+  set(GIT_DESCRIBED_TAG "0.0.0.0")
+else()
   string(REGEX MATCH "^([0-9]+)\\.([0-9]+)\\.([0-9]+)-([0-9]+)"
                GIT_DESCRIBED_TAG ${TAG})
+
   if(NOT GIT_DESCRIBED_TAG)
-    message(
-      FATAL_ERROR
-        "'git describe --tags' result doesn't match to expected format")
+    string(REGEX MATCH "^([0-9]+)\\.([0-9]+)\\.([0-9]+)" GIT_DESCRIBED_TAG
+                 ${TAG})
+    if(NOT GIT_DESCRIBED_TAG)
+      message(
+        FATAL_ERROR
+          "'git describe --tags' result doesn't match to expected format")
+    endif()
+    set(CMAKE_MATCH_4 0)
   endif()
   set(TAG_MAJOR "${CMAKE_MATCH_1}")
   set(TAG_MINOR "${CMAKE_MATCH_2}")
@@ -68,3 +73,5 @@ if(NOT GIT_DESCRIBED_TAG)
   set(TAG_TWEAK "${CMAKE_MATCH_4}")
   set(GIT_DESCRIBED_TAG "${TAG_MAJOR}.${TAG_MINOR}.${TAG_PATCH}.${TAG_TWEAK}")
 endif()
+
+cmake_print_variables(GIT_DESCRIBED_TAG)
